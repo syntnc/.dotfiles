@@ -108,6 +108,9 @@ source $ZSH/oh-my-zsh.sh
 # autoload -U promptinit; promptinit
 # prompt pure
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
 
+alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
