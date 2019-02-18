@@ -3,6 +3,9 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export EDITOR=vim
+export GUI_EDITOR=code
+export VISUAL=vim
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -55,7 +58,7 @@ ZSH_THEME="refined"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# ZSH_CUSTOM=$HOME/.zsh-themes-external
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -111,6 +114,18 @@ source $ZSH/oh-my-zsh.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
+
+alias r="ranger"
+alias h="htop"
+
+alias cfb="$GUI_EDITOR ~/.bashrc"
+alias cfi="$GUI_EDITOR ~/.config/i3/config"
+alias cfp="$GUI_EDITOR ~/.profile"
+alias cfr="$GUI_EDITOR ~/.config/ranger/rc.conf"
+alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
+alias cfv="$GUI_EDITOR ~/.vimrc"
+alias cfx="$GUI_EDITOR ~/.Xresources"
+alias cfz="$GUI_EDITOR ~/.zshrc"
 
 alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
