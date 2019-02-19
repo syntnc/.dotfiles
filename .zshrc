@@ -10,7 +10,7 @@ export VISUAL=vim
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="refined"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -39,7 +39,7 @@ ZSH_THEME="refined"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -107,25 +107,44 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source $HOME/.bash_aliases
 
 # autoload -U promptinit; promptinit
-# prompt pure
+# prompt spaceship
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
+# Bullet Train Theme Settings
+# BULLETTRAIN_PROMPT_CHAR=λ
+# BULLETTRAIN_TIME_12HR=true
+
+# BULLETTRAIN_PROMPT_ORDER=(
+#     #time
+#     status
+#     custom
+#     #context
+#     dir
+#     #perl
+#     ruby
+#     virtualenv
+#     #nvm
+#     aws
+#     go
+#     elixir
+#     git
+#     hg
+#     cmd_exec_time
+#   )
+
+# Powerlevel9k theme settings
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv anaconda dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(aws status ip ssh)
+POWERLEVEL9K_TIME_FORMAT='%D{%H:%M %p}'
+POWERLEVEL9k_TIME_12HR=true
+POWERLEVEL9K_ANACONDA_BACKGROUND="green"
+
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
-
-alias r="ranger"
-alias h="htop"
-
-alias cfb="$GUI_EDITOR ~/.bashrc"
-alias cfi="$GUI_EDITOR ~/.config/i3/config"
-alias cfp="$GUI_EDITOR ~/.profile"
-alias cfr="$GUI_EDITOR ~/.config/ranger/rc.conf"
-alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
-alias cfv="$GUI_EDITOR ~/.vimrc"
-alias cfx="$GUI_EDITOR ~/.Xresources"
-alias cfz="$GUI_EDITOR ~/.zshrc"
-
-alias cozy='flatpak run com.github.geigi.cozy'
-alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
