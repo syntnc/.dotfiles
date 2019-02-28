@@ -32,16 +32,27 @@ alias gmh="cd ~/Movies/Hindi"
 alias gmi="cd ~/Movies/International"
 alias gt="cd ~/TV"
 
-alias ma="mv $1 ~/Audiobooks"
-alias mb="mv $1 ~/Ebooks"
-alias md="mv $1 ~/Documents"
-alias mD="mv $1 ~/Downloads"
-alias mm="mv $1 ~/Movies"
-alias mmb="mv $1 ~/Movies/Bengali"
-alias mme="mv $1 ~/Movies/English"
-alias mmh="mv $1 ~/Movies/Hindi"
-alias mmi="mv $1 ~/Movies/International"
-alias mt="mv $1 ~/TV"
+alias ma='f() { mv $1 ~/Audiobooks }; f'
+alias mb='f() { mv $1 ~/Ebooks }; f'
+alias md='f() { mv $1 ~/Documents }; f'
+alias mD='f() { mv $1 ~/Downloads }; f'
+alias mm='f() { mv $1 ~/Movies }; f'
+alias mmb='f() { mv $1 ~/Movies/Bengali }; f'
+alias mme='f() { mv $1 ~/Movies/English }; f'
+alias mmh='f() { mv $1 ~/Movies/Hindi }; f'
+alias mmi='f() { mv $1 ~/Movies/International }; f'
+alias mt='f() { mv $1 ~/TV }; f'
+
+alias ya='f() { cp $1 ~/Audiobooks }; f'
+alias yb='f() { cp $1 ~/Ebooks }; f'
+alias yd='f() { cp $1 ~/Documents }; f'
+alias yD='f() { cp $1 ~/Downloads }; f'
+alias ym='f() { cp $1 ~/Movies }; f'
+alias ymb='f() { cp $1 ~/Movies/Bengali }; f'
+alias yme='f() { cp $1 ~/Movies/English }; f'
+alias ymh='f() { cp $1 ~/Movies/Hindi }; f'
+alias ymi='f() { cp $1 ~/Movies/International }; f'
+alias yt='f() { cp $1 ~/TV }; f'
 
 alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
