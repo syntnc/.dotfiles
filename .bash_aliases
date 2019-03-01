@@ -10,6 +10,7 @@ alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
 alias cfv="$GUI_EDITOR ~/.vimrc"
 alias cfx="$GUI_EDITOR ~/.Xresources"
 alias cfz="$GUI_EDITOR ~/.zshrc"
+alias cfvp="$GUI_EDITOR ~/.vim/pack/install.sh"
 
 alias vcfa="$EDITOR ~/.bash_aliases"
 alias vcfb="$EDITOR ~/.bashrc"
@@ -20,6 +21,7 @@ alias vcfri="$EDITOR ~/.config/ranger/rifle.conf"
 alias vcfv="$EDITOR ~/.vimrc"
 alias vcfx="$EDITOR ~/.Xresources"
 alias vcfz="$EDITOR ~/.zshrc"
+alias vcfvp="$EDITOR ~/.vim/pack/install.sh"
 
 alias ga="cd ~/Audiobooks"
 alias gb="cd ~/Ebooks"
@@ -56,3 +58,4 @@ alias yt='f() { cp $1 ~/TV }; f'
 
 alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
+alias vimpack='bash ~/.vim/pack/install.sh'

@@ -148,3 +148,5 @@ POWERLEVEL9k_TIME_12HR=true
 POWERLEVEL9K_ANACONDA_BACKGROUND="green"
 
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

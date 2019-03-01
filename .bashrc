@@ -119,3 +119,4 @@ exec zsh
 
 # added by Anaconda3 installer
 # export PATH="/home/illuminatus/anaconda3/bin:$PATH"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
