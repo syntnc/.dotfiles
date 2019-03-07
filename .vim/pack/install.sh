@@ -43,16 +43,29 @@ package https://github.com/scrooloose/nerdtree.git &
 package https://github.com/jistr/vim-nerdtree-tabs.git &
 package https://github.com/vim-airline/vim-airline.git &
 package https://github.com/vim-airline/vim-airline-themes.git &
+package https://github.com/vim-scripts/vim-auto-save.git &
 package https://github.com/tpope/vim-eunuch.git &
 package https://github.com/terryma/vim-multiple-cursors.git &
 package https://github.com/tpope/vim-surround.git &
 package https://github.com/bronson/vim-trailing-whitespace.git &
+package https://github.com/SirVer/ultisnips.git &
+wait
+) &
+(
+set_group session
+package https://github.com/xolox/vim-misc.git &
+package https://github.com/xolox/vim-session.git &
 wait
 ) &
 (
 set_group git
 package https://github.com/tpope/vim-fugitive.git &
 package https://github.com/airblade/vim-gitgutter.git &
+wait
+) &
+(
+set_group latex
+package https://github.com/lervag/vimtex.git &
 wait
 ) &
 (

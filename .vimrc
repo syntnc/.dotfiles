@@ -1,29 +1,46 @@
 """" Basic behaviour
 set nocompatible
-set mouse=a                 " enable mouse for all modes
+set mouse=a                     " enable mouse for all modes
+
 set tabstop=4
 set softtabstop=4
 set expandtab
-set autoindent              " file-specific indenting on newline
-set wrap                    " wrap lines
-set number                  " show line numbers
-set relativenumber          " show line numbers relative to the current line
-set cmdheight=2             " set command window height to 2 lines
-set showcmd                 " show partial commands in the last line of the screen
-set foldenable              " enable code folding
-set showmatch               " highlight matching parentheses
-set ruler                   " show line and column number on right side of statusline
-set wildmenu                " better command-line completion
-set visualbell              " use visual bell instead of beeping when doing something wrong
-set confirm                 " raise dialog instead of failing a command due to unsaved changes
-set splitbelow              " open new split pane to the bottom
-set splitright              " open new split pane to the right
-set hidden                  " enable hidden buffers
+
+set autoindent                  " file-specific indenting on newline
+set backspace=indent,eol,start
+set wrap                        " wrap lines
+
+set number                      " show line numbers
+set relativenumber              " show line numbers relative to the current line
+set ruler                       " show line and column number on right side of statusline
+
+set cmdheight=2                 " set command window height to 2 lines
+set showcmd                     " show partial commands in the last line of the screen
+set foldenable                  " enable code folding
+set showmatch                   " highlight matching parentheses
+set wildmenu                    " better command-line completion
+set visualbell                  " use visual bell instead of beeping when doing something wrong
+set confirm                     " raise dialog instead of failing a command due to unsaved changes
+
+set splitbelow                  " open new split pane to the bottom
+set splitright                  " open new split pane to the right
+
+set hidden                      " enable hidden buffers
+
+"" Include user's extra bundle
+if filereadable(expand("~/.vimrc.local.bundles"))
+  source ~/.vimrc.local.bundles
+endif
 
 """" Appearance
-syntax enable               " enable syntax highlighting
-filetype plugin indent on   " use filetype-based highlighting
-set laststatus=2            " always display status line, even on single window
+
+"" Set colorscheme
+set background=dark
+colorscheme solarized
+
+syntax enable                   " enable syntax highlighting
+filetype plugin indent on       " use filetype-based highlighting
+set laststatus=2                " always display status line, even on single window
 
 set mousemodel=popup
 set t_Co=256
@@ -59,15 +76,32 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+if exists("*fugitive#statusline")
+  set statusline+=%{fugitive#statusline()}
+endif
 
 """" Search settings
-set incsearch               " search incrementally as characters are entered
-set hlsearch                " highlight matches
-set ignorecase              " use case-insensitive search
-set smartcase               " use case-insensitive search except when using capital letters
+set incsearch                   " search incrementally as characters are entered
+set hlsearch                    " highlight matches
+set ignorecase                  " use case-insensitive search
+set smartcase                   " use case-insensitive search except when using capital letters
 
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"""" Session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
 
 """" Key Bindings
+
+"" Map leader to ,
+let mapleader=','
+
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <space> za
 
@@ -76,9 +110,7 @@ map Y y$
 
 "" Beginning/End of line using B and E
 nnoremap B ^
-nnoremap E ^
-nnoremap $ <nop>
-nnoremap ^ <nop>
+nnoremap E $
 
 ""Press jk to quit Input Mode 
 inoremap jk <esc>
@@ -110,9 +142,16 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 "" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
+nnoremap <Tab> gt               " use :tabn to go to the next tab
+nnoremap <S-Tab> gT             " use :tabp to go to the previous tab
 nnoremap <silent> <S-t> :tabnew<CR>
+
+"" Buffer navigation
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
+noremap <leader>c :bd<CR>       " close buffer
 
 """" Miscellaneous shortcuts
 cnoreabbrev W! w!
@@ -143,6 +182,17 @@ augroup vimrc-javascript
 augroup END
 
 
+" LaTeX
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal="abdmg"
+
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+autocmd FileType tex let g:auto_save=1
+autocmd FileType tex let g:auto_save_silent=1
+
+
 " python
 " vim-python
 augroup vimrc-python
@@ -171,8 +221,14 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
+" Disable latex in polyglot to use vimtex
+let g:polyglot_disabled = ['latex', 'python']
 let python_highlight_all = 1
+
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
 
 """" Plugin specific configs
 
@@ -232,3 +288,37 @@ let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
+
+
+
+"" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+
+
+"" CtrlP
+nnoremap <Leader>o :CtrlPMRUFiles<CR>
+nnoremap <Leader>p :CtrlP<CR>
+
+let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
+let g:ctrlp_max_files = 200000
+let g:ctrlp_mruf_relative = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_cmd = 'CtrlPMixed'
+set autochdir
+
+
+
+"" Ultisnips
+let g:UltisnipsEditSplit='vertical'
+let g:UltisnipsListSnippets='<C-S-tab>'
+let g:UltisnipsExpandTrigger='<tab>'
+let g:UltisnipsJumpForwardTrigger='<tab>'
+let g:UltisnipsJumpBackwardTrigger='<S-tab>'
+
+

@@ -77,11 +77,11 @@ URxvt*borderLess:       false
 #define terminal_font Inconsolata for Powerline
 #define size 18
 
-URxvt*font:             xft:terminal_font:bold:pixelsize=size:antialias=true:autohint=true
-URxvt*boldFont:         xft:terminal_font:bold:pixelsize=size:antialias=true:autohint=true
-URxvt*imFont:           xft:terminal_font:bold:pixelsize=size:antialias=true:autohint=true
-URxvt*italicFont:       xft:terminal_font:regular:italic:pixelsize=size:antialias=true:autohint=true
-URxvt*boldItalicFont:   xft:terminal_font:bold:italic:pixelsize=size:antialias=true:autohint=true
+URxvt*font:             xft:terminal_font:bold:size=size:antialias=true:autohint=true
+URxvt*boldFont:         xft:terminal_font:bold:size=size:antialias=true:autohint=true
+URxvt*imFont:           xft:terminal_font:bold:size=size:antialias=true:autohint=true
+URxvt*italicFont:       xft:terminal_font:regular:italic:size=size:antialias=true:autohint=true
+URxvt*boldItalicFont:   xft:terminal_font:bold:italic:size=size:antialias=true:autohint=true
 
 URxvt.cursorBlink:      true
 
@@ -91,7 +91,7 @@ URxvt.urlButton:        1
 URxvt.underlineURLs:    True
 URxvt.matcher.button:   1
 
-URxvt.perl-ext-common:  matcher,readline
+URxvt.perl-ext-common:  fullscreen,keyboard-select,matcher,readline,resize-font,tabbedx
 URxvt.perl-lib:         $HOME/.urxvt/ext
 
 ! Keybindings
@@ -101,6 +101,7 @@ URxvt.keysym.Mod4-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.F11: perl:fullscreen:switch
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.C-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-u: perl:url-select:select_next

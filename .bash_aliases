@@ -4,6 +4,7 @@ alias h="htop"
 alias cfa="$GUI_EDITOR ~/.bash_aliases"
 alias cfb="$GUI_EDITOR ~/.bashrc"
 alias cfi="$GUI_EDITOR ~/.config/i3/config"
+alias cfis="$GUI_EDITOR ~/.i3status.conf"
 alias cfp="$GUI_EDITOR ~/.profile"
 alias cfr="$GUI_EDITOR ~/.config/ranger/rc.conf"
 alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
@@ -15,6 +16,7 @@ alias cfvp="$GUI_EDITOR ~/.vim/pack/install.sh"
 alias vcfa="$EDITOR ~/.bash_aliases"
 alias vcfb="$EDITOR ~/.bashrc"
 alias vcfi="$EDITOR ~/.config/i3/config"
+alias vcfis="$EDITOR ~/.i3status.conf"
 alias vcfp="$EDITOR ~/.profile"
 alias vcfr="$EDITOR ~/.config/ranger/rc.conf"
 alias vcfri="$EDITOR ~/.config/ranger/rifle.conf"
@@ -56,6 +58,7 @@ alias ymh='f() { cp $1 ~/Movies/Hindi }; f'
 alias ymi='f() { cp $1 ~/Movies/International }; f'
 alias yt='f() { cp $1 ~/TV }; f'
 
+alias attach='tmux attach-session -t'
 alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
 alias vimpack='bash ~/.vim/pack/install.sh'
