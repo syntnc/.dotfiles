@@ -35,7 +35,6 @@ function package () {
 }
 (
 set_group ide
-package https://github.com/kien/ctrlp.vim.git &
 package https://github.com/Raimondi/delimitMate.git &
 package https://github.com/junegunn/fzf.vim.git &
 package https://github.com/Yggdroot/indentLine.git &
@@ -46,8 +45,14 @@ package https://github.com/vim-airline/vim-airline-themes.git &
 package https://github.com/vim-scripts/vim-auto-save.git &
 package https://github.com/tpope/vim-eunuch.git &
 package https://github.com/terryma/vim-multiple-cursors.git &
-package https://github.com/tpope/vim-surround.git &
 package https://github.com/bronson/vim-trailing-whitespace.git &
+wait
+) &
+(set_group autocomplete
+package https://github.com/honza/vim-snippets.git &
+package https://github.com/tpope/vim-surround.git &
+package https://github.com/ervandew/supertab.git &
+package https://github.com/valloric/youcompleteme.git &
 package https://github.com/SirVer/ultisnips.git &
 wait
 ) &
@@ -84,7 +89,6 @@ package https://github.com/scrooloose/syntastic.git &
 package https://github.com/kchmck/vim-coffee-script.git &
 package https://github.com/tpope/vim-markdown.git &
 package https://github.com/ap/vim-css-color.git &
-package https://github.com/valloric/youcompleteme.git &
 wait
 ) &
 (
@@ -96,6 +100,7 @@ package https://github.com/majutsushi/tagbar.git &
 package https://github.com/avelino/vim-bootstrap.git &
 package https://github.com/avelino/vim-bootstrap-updater.git &
 package https://github.com/sheerun/vim-polyglot.git &
+wait
 ) &
 (
 set_group colorschemes

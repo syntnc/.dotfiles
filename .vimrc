@@ -1,6 +1,12 @@
 """" Basic behaviour
 set nocompatible
 set mouse=a                     " enable mouse for all modes
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set bomb
+set binary
+set ttyfast
 
 set tabstop=4
 set softtabstop=4
@@ -10,8 +16,7 @@ set autoindent                  " file-specific indenting on newline
 set backspace=indent,eol,start
 set wrap                        " wrap lines
 
-set number                      " show line numbers
-set relativenumber              " show line numbers relative to the current line
+set number relativenumber       " show line numbers relative to the current line
 set ruler                       " show line and column number on right side of statusline
 
 set cmdheight=2                 " set command window height to 2 lines
@@ -61,7 +66,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -69,7 +74,7 @@ else
       set term=xterm-256color
     endif
   endif
-  
+
 endif
 
 if &term =~ '256color'
@@ -112,7 +117,7 @@ map Y y$
 nnoremap B ^
 nnoremap E $
 
-""Press jk to quit Input Mode 
+""Press jk to quit Input Mode
 inoremap jk <esc>
 
 "" Split
@@ -153,6 +158,13 @@ noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 noremap <leader>c :bd<CR>       " close buffer
 
+"" Indent and move code blocks
+vnoremap < <gv                  " indent left
+vnoremap > >gv                  " indent right
+
+"" Use urlview to choose and open a url:
+:noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
 """" Miscellaneous shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -164,6 +176,17 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+"""" Auto-commands
+
+" Automatic relaoding of .vimrc on save
+    autocmd BufWritePost ~/.vimrc source %
+
+" Automatically deletes all trailing whitespace on save.
+	autocmd BufWritePre * %s/\s\+$//e
+
+" Run xrdb whenever Xdefaults or Xresources are updated.
+	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
 
 """" Language specific configs
 
@@ -188,7 +211,7 @@ let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal="abdmg"
 
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_events = ["InsertLeave"]
 autocmd FileType tex let g:auto_save=1
 autocmd FileType tex let g:auto_save_silent=1
 
@@ -203,13 +226,13 @@ augroup vimrc-python
 augroup END
 
 " jedi-vim
-let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_on_dot = 0
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
+let g:jedi#show_call_signatures = "1"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
@@ -292,33 +315,56 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 
 "" fzf.vim
+set rtp+=~/.fzf
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GitFiles --exclude-standard --other
+  endif
+endfun
+
+nnoremap <silent> <leader>;         :BLines<CR>                 " lines in current buffer
+nnoremap <silent> <leader>;         :BLines<CR>                 " lines in current buffer
+nnoremap <silent> <leader>o         :BTags<CR>                  " tags in current buffer
+nnoremap <silent> <leader><enter>   :Buffers<CR>                " open buffers
+nnoremap <silent> <C-p>             :call FzfOmniFiles()<CR>
+nnoremap <silent> <leader><space>   :Files<CR>                  " open files
+nnoremap <silent> <leader>ft        :Filetypes<CR>              " change filetype
+nnoremap <silent> <leader>?         :History<CR>                " file history
+nnoremap <silent> <leader>:         :History:<CR>               " command history
+nnoremap <silent> <leader>/         :History/<CR>               " search history
+nnoremap <silent> <leader>`         :Marks<CR>                  " all marks
+nnoremap <silent> <leader>s         :Snippets<CR>               " ultisnips snippets
+nnoremap <silent> <leader>A         :Windows<CR>                " open windows
+nnoremap <silent> <leader>O         :Tags<CR>                   " all tags
+
 
 
 "" CtrlP
-nnoremap <Leader>o :CtrlPMRUFiles<CR>
-nnoremap <Leader>p :CtrlP<CR>
+" nnoremap <Leader>o :CtrlPMRUFiles<CR>
+" nnoremap <Leader>p :CtrlP<CR>
 
-let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
-let g:ctrlp_max_files = 200000
-let g:ctrlp_mruf_relative = 1
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_cmd = 'CtrlPMixed'
-set autochdir
+" let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/.git/.*'
+" let g:ctrlp_max_files = 200000
+" let g:ctrlp_mruf_relative = 1
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" let g:ctrlp_working_path_mode='ra'
+" let g:ctrlp_cmd = 'CtrlPMixed'
+" set autochdir
 
 
 
 "" Ultisnips
 let g:UltisnipsEditSplit='vertical'
 let g:UltisnipsListSnippets='<C-S-tab>'
-let g:UltisnipsExpandTrigger='<tab>'
-let g:UltisnipsJumpForwardTrigger='<tab>'
-let g:UltisnipsJumpBackwardTrigger='<S-tab>'
-
-
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
