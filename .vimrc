@@ -90,6 +90,7 @@ set incsearch                   " search incrementally as characters are entered
 set hlsearch                    " highlight matches
 set ignorecase                  " use case-insensitive search
 set smartcase                   " use case-insensitive search except when using capital letters
+set path+=**                    " recursive file searching from current directory
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -114,8 +115,8 @@ nnoremap <space> za
 map Y y$
 
 "" Beginning/End of line using B and E
-nnoremap B ^
-nnoremap E $
+" nnoremap B ^
+" nnoremap E $
 
 ""Press jk to quit Input Mode
 inoremap jk <esc>
@@ -151,6 +152,10 @@ nnoremap <Tab> gt               " use :tabn to go to the next tab
 nnoremap <S-Tab> gT             " use :tabp to go to the previous tab
 nnoremap <silent> <S-t> :tabnew<CR>
 
+noremap <Leader><Left>  :tabmove -1<CR>     " shift tab to the left
+noremap <Leader><Right> :tabmove +1<CR>     " shift tab to the right
+
+
 "" Buffer navigation
 noremap <leader>z :bp<CR>
 noremap <leader>q :bp<CR>
@@ -183,7 +188,14 @@ cnoreabbrev Qall qall
     autocmd BufWritePost ~/.vimrc source %
 
 " Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
+    function! <SID>StripTrailingWhitespaces()
+        let l = line(".")
+        let c = col(".")
+        %s/\s\+$//e
+        call cursor(l, c)
+    endfun
+
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
@@ -330,7 +342,6 @@ fun! FzfOmniFiles()
   endif
 endfun
 
-nnoremap <silent> <leader>;         :BLines<CR>                 " lines in current buffer
 nnoremap <silent> <leader>;         :BLines<CR>                 " lines in current buffer
 nnoremap <silent> <leader>o         :BTags<CR>                  " tags in current buffer
 nnoremap <silent> <leader><enter>   :Buffers<CR>                " open buffers
