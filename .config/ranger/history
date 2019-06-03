@@ -1,9 +1,0 @@
-rename
-
-rename The Lives Of Others (2006) [BluRay] [1080p]
-rename The.Lives.Of.Others.2006.1080p.BluRay.x264-[YTS.AM].mp4
-rename Me.and.Earl.and.the.Dying.Girl.2015.1080p.BluRay.x264.YIFY.mp4
-echo $HOME
-echo $EDITOR
-bulkrename
-x

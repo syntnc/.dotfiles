@@ -223,16 +223,17 @@ client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 # Lock screen
 bindsym $mod+shift+x exec i3lock
 
-set $Locker i3lock && sleep 1
+
+set $ChromeKill i3-msg '[class="Google-chrome"] kill'
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id $ChromeKill && i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym r exec --no-startup-id $ChromeKill && systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id $ChromeKill && systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -261,8 +262,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Autostart applications
 exec_always feh --bg-center /home/illuminatus/Pictures/wallpaper.png
-exec --no-startup-id i3-msg "workspace $ws1; exec google-chrome"
-exec --no-startup-id code
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id i3-msg "workspace $ws1; exec google-chrome --password-store=gnome"
+# exec --no-startup-id code
 # exec --no-startup-id flatpak run com.github.geigi.cozy
 # exec --no-startup-id spotify
 # exec --no-startup-id tusk

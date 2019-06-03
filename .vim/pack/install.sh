@@ -26,6 +26,9 @@ function package () {
   expected_repo=$(basename "$repo_url" .git)
   if [ -d "$expected_repo" ]; then
     cd "$expected_repo" || exit
+    if [ "$expected_repo" = "coc.nvim" ]; then
+      ./install.sh nightly
+    fi
     result=$(git pull --force)
     echo "$expected_repo: $result"
   else
@@ -33,6 +36,18 @@ function package () {
     git clone -q "$repo_url"
   fi
 }
+
+function coc_extensions () {
+  extensions_path="$HOME/.config/coc/extensions"
+  mkdir -p "$extensions_path"
+  cd "$extensions_path"
+  if [ ! -f package.json ]; then
+    echo '{"dependencies":{}}'> package.json
+  fi
+  yarn init
+  yarn add coc-python
+}
+
 (
 set_group ide
 package https://github.com/Raimondi/delimitMate.git &
@@ -105,6 +120,12 @@ wait
 (
 set_group colorschemes
 package https://github.com/altercation/vim-colors-solarized.git &
+wait
+) &
+wait
+(set_group coc
+package https://github.com/neoclide/coc.nvim.git &
+coc_extensions &
 wait
 ) &
 wait

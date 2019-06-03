@@ -224,6 +224,7 @@ set conceallevel=1
 let g:tex_conceal="abdmg"
 
 let g:auto_save_events = ["InsertLeave"]
+let g:auto_save_in_insert_mode = 0
 autocmd FileType tex let g:auto_save=1
 autocmd FileType tex let g:auto_save_silent=1
 
@@ -375,7 +376,7 @@ nnoremap <silent> <leader>O         :Tags<CR>                   " all tags
 
 "" Ultisnips
 let g:UltisnipsEditSplit='vertical'
-let g:UltisnipsListSnippets='<C-S-tab>'
+let g:UltisnipsListSnippets='<C-S-s>'
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
