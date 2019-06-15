@@ -66,8 +66,9 @@ wait
 (set_group autocomplete
 package https://github.com/honza/vim-snippets.git &
 package https://github.com/tpope/vim-surround.git &
-package https://github.com/ervandew/supertab.git &
-package https://github.com/valloric/youcompleteme.git &
+package https://github.com/davidhalter/jedi-vim.git &
+# package https://github.com/ervandew/supertab.git &
+# package https://github.com/valloric/youcompleteme.git &
 package https://github.com/SirVer/ultisnips.git &
 wait
 ) &
@@ -88,14 +89,14 @@ set_group latex
 package https://github.com/lervag/vimtex.git &
 wait
 ) &
-(
-set_group ruby
-package https://github.com/tpope/vim-rails.git &
-package https://github.com/tpope/vim-rake.git &
-package https://github.com/tpope/vim-bundler.git &
-package https://github.com/tpope/vim-endwise.git &
-wait
-) &
+# (
+# set_group ruby
+# package https://github.com/tpope/vim-rails.git &
+# package https://github.com/tpope/vim-rake.git &
+# package https://github.com/tpope/vim-bundler.git &
+# package https://github.com/tpope/vim-endwise.git &
+# wait
+# ) &
 (
 set_group syntax
 package https://github.com/w0rp/ale.git &
