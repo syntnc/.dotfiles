@@ -60,6 +60,6 @@ alias yt='f() { cp $1 ~/TV }; f'
 
 alias attach='tmux attach-session -t'
 alias cozy='flatpak run com.github.geigi.cozy'
-alias config='/usr/bin/git --git-dir=/home/illuminatus/.dotfiles/ --work-tree=/home/illuminatus'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vimpack='bash ~/.vim/pack/install.sh'
 alias vims='f() { vim -S ~/.vim/session/$1.vim }; f'
