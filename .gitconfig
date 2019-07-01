@@ -1,0 +1,8 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Sayantan Chatterjee
+	email = thisissayantan.mail@gmail.com
+
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+
