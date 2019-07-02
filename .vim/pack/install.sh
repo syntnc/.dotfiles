@@ -19,12 +19,12 @@ function set_group () {
 #   repo_url, a URL to the git repo.
 #
 # Examples:
-#   package https://github.com/tpope/vim-endwise.git
+#   package tpope/vim-endwise.git
 #
 function package () {
-  repo_url=$1
+  repo_url="http://github.com/$1.git"
   expected_repo=$(basename "$repo_url" .git)
-  if [ -d "$expected_repo" ]; then
+  if [[ -d "$expected_repo/.git" ]]; then
     cd "$expected_repo" || exit
     if [ "$expected_repo" = "coc.nvim" ]; then
       ./install.sh nightly
@@ -50,82 +50,82 @@ function coc_extensions () {
 
 (
 set_group ide
-package https://github.com/Raimondi/delimitMate.git &
-package https://github.com/junegunn/fzf.vim.git &
-package https://github.com/Yggdroot/indentLine.git &
-package https://github.com/scrooloose/nerdtree.git &
-package https://github.com/jistr/vim-nerdtree-tabs.git &
-package https://github.com/vim-airline/vim-airline.git &
-package https://github.com/vim-airline/vim-airline-themes.git &
-package https://github.com/vim-scripts/vim-auto-save.git &
-package https://github.com/tpope/vim-eunuch.git &
-package https://github.com/terryma/vim-multiple-cursors.git &
-package https://github.com/bronson/vim-trailing-whitespace.git &
+package Raimondi/delimitMate &
+package junegunn/fzf.vim &
+package Yggdroot/indentLine &
+package scrooloose/nerdtree &
+package jistr/vim-nerdtree-tabs &
+package vim-airline/vim-airline &
+package vim-airline/vim-airline-themes &
+package vim-scripts/vim-auto-save &
+package tpope/vim-eunuch &
+package terryma/vim-multiple-cursors &
+package bronson/vim-trailing-whitespace &
 wait
 ) &
 (set_group autocomplete
-package https://github.com/honza/vim-snippets.git &
-package https://github.com/tpope/vim-surround.git &
-package https://github.com/davidhalter/jedi-vim.git &
-# package https://github.com/ervandew/supertab.git &
-# package https://github.com/valloric/youcompleteme.git &
-package https://github.com/SirVer/ultisnips.git &
+package honza/vim-snippets &
+package tpope/vim-surround &
+package davidhalter/jedi-vim &
+# package ervandew/supertab &
+# package valloric/youcompleteme &
+package SirVer/ultisnips &
 wait
 ) &
 (
 set_group session
-package https://github.com/xolox/vim-misc.git &
-package https://github.com/xolox/vim-session.git &
+package xolox/vim-misc &
+package xolox/vim-session &
 wait
 ) &
 (
 set_group git
-package https://github.com/tpope/vim-fugitive.git &
-package https://github.com/airblade/vim-gitgutter.git &
+package tpope/vim-fugitive &
+package airblade/vim-gitgutter &
 wait
 ) &
 (
 set_group latex
-package https://github.com/lervag/vimtex.git &
+package lervag/vimtex &
 wait
 ) &
 # (
 # set_group ruby
-# package https://github.com/tpope/vim-rails.git &
-# package https://github.com/tpope/vim-rake.git &
-# package https://github.com/tpope/vim-bundler.git &
-# package https://github.com/tpope/vim-endwise.git &
+# package tpope/vim-rails &
+# package tpope/vim-rake &
+# package tpope/vim-bundler &
+# package tpope/vim-endwise &
 # wait
 # ) &
 (
 set_group syntax
-package https://github.com/w0rp/ale.git &
-package https://github.com/mattn/emmet-vim.git &
-package https://github.com/scrooloose/syntastic.git &
-package https://github.com/kchmck/vim-coffee-script.git &
-package https://github.com/tpope/vim-markdown.git &
-package https://github.com/ap/vim-css-color.git &
+package w0rp/ale &
+package mattn/emmet-vim &
+package scrooloose/syntastic &
+package kchmck/vim-coffee-script &
+package tpope/vim-markdown &
+package ap/vim-css-color &
 wait
 ) &
 (
 set_group generated
-package https://github.com/tpope/vim-commentary.git &
-package https://github.com/vim-scripts/grep.vim.git &
-package https://github.com/vim-scripts/CSApprox.git &
-package https://github.com/majutsushi/tagbar.git &
-package https://github.com/avelino/vim-bootstrap.git &
-package https://github.com/avelino/vim-bootstrap-updater.git &
-package https://github.com/sheerun/vim-polyglot.git &
+package tpope/vim-commentary &
+package vim-scripts/grep.vim &
+package vim-scripts/CSApprox &
+package majutsushi/tagbar &
+package avelino/vim-bootstrap &
+package avelino/vim-bootstrap-updater &
+package sheerun/vim-polyglot &
 wait
 ) &
 (
 set_group colorschemes
-package https://github.com/altercation/vim-colors-solarized.git &
+package altercation/vim-colors-solarized &
 wait
 ) &
 wait
 (set_group coc
-package https://github.com/neoclide/coc.nvim.git &
+package neoclide/coc.nvim &
 coc_extensions &
 wait
 ) &
