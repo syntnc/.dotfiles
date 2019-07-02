@@ -41,6 +41,8 @@ endif
 
 "" Set colorscheme
 set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=16
 colorscheme solarized
 
 syntax enable                   " enable syntax highlighting
