@@ -32,6 +32,11 @@ set splitright                  " open new split pane to the right
 
 set hidden                      " enable hidden buffers
 
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
 "" Include user's extra bundle
 if filereadable(expand("~/.vimrc.local.bundles"))
   source ~/.vimrc.local.bundles
@@ -50,7 +55,6 @@ set laststatus=2                " always display status line, even on single win
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
-set gfn=Monospace\ 10
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
@@ -63,7 +67,7 @@ else
   " IndentLine
   let g:indentLine_enabled = 1
   let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
+  let g:indentLine_char_list = ['|', '¦', '┆', '┊']
   let g:indentLine_faster = 1
 
 
@@ -75,10 +79,6 @@ else
     endif
   endif
 
-endif
-
-if &term =~ '256color'
-  set t_ut=
 endif
 
 if exists("*fugitive#statusline")
@@ -108,7 +108,7 @@ let g:session_command_aliases = 1
 "" Map leader to ,
 let mapleader=','
 
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>jk :nohlsearch<CR>
 nnoremap <space> za
 
 "" Introduce copy line
@@ -261,11 +261,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['latex', 'python']
 let python_highlight_all = 1
 
-"" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
 """" Plugin specific configs
 
 "" Vim Airline
@@ -371,6 +366,18 @@ nnoremap <silent> <leader>O         :Tags<CR>                   " all tags
 " let g:ctrlp_working_path_mode='ra'
 " let g:ctrlp_cmd = 'CtrlPMixed'
 " set autochdir
+
+
+
+"" ALE
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier','eslint'],
+\}
+let g:ale_fix_on_save = 1
+nmap <Leader>ad :ALEGoToDefinition<CR>
+nmap <Leader>ah :ALEHover<CR>
+nmap <Leader>ar :ALEFindReferences<CR>
 
 
 
