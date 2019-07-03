@@ -74,6 +74,8 @@ ENABLE_CORRECTION="true"
 
 plugins=(
   git
+  docker
+  docker-compose
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -151,3 +153,7 @@ POWERLEVEL9K_ANACONDA_BACKGROUND="green"
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fix for docker plugin not loading
+fpath+=($ZSH/plugins/docker)
+autoload -U compinit && compinit
