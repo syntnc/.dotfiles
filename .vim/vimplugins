@@ -1,0 +1,51 @@
+call plug#begin('~/.vim/plugged')
+
+" IDE
+Plug 'w0rp/ale'
+Plug 'Raimondi/delimitMate'
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/vim-auto-save'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'bronson/vim-trailing-whitespace'
+
+" Autocomplete
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'davidhalter/jedi-vim'
+
+" Session
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" Syntax
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/syntastic'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-markdown'
+Plug 'ap/vim-css-color'
+Plug 'fatih/vim-go', { 'tag': '*' }
+
+" Generated
+Plug 'vim-scripts/CSApprox'
+Plug 'majutsushi/tagbar'
+Plug 'avelino/vim-bootstrap'
+Plug 'avelino/vim-bootstrap-updater'
+Plug 'sheerun/vim-polyglot'
+
+"Colorschemes"
+Plug 'altercation/vim-colors-solarized'
+
+" Initialize plugin system
+call plug#end()

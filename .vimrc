@@ -32,6 +32,11 @@ set splitright                  " open new split pane to the right
 
 set hidden                      " enable hidden buffers
 
+"" Include plugins for vim-plug
+if filereadable(expand("~/.vim/vimplugins"))
+  source ~/.vim/vimplugins
+endif
+
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
@@ -505,3 +510,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+" Disable vim-go definition mapping
+let g:go_def_mapping_enabled = 0
