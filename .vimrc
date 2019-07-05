@@ -57,8 +57,6 @@ endif
 
 "" Set colorscheme
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=16
 colorscheme solarized
 
 syntax enable                   " enable syntax highlighting
@@ -127,7 +125,9 @@ let mapleader=','
 
 nnoremap <leader>jk :nohlsearch<CR>         " turn off highlights after search
 map Y y$                                    " introduce copy line
-inoremap jk <esc>                           " press jk to quit Input Mode
+
+""Press jk to quit Input Mode
+inoremap jk <esc>
 
 "" Code folding
 inoremap <F9> <C-O>za
@@ -199,6 +199,10 @@ noremap <leader>c :bd<CR>       " close buffer
 "" Indent and move code blocks
 vnoremap < <gv                  " indent left
 vnoremap > >gv                  " indent right
+
+"" Use urlview to choose and open a url:
+:noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
 
 
 """" Miscellaneous shortcuts
