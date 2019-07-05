@@ -200,10 +200,6 @@ noremap <leader>c :bd<CR>       " close buffer
 vnoremap < <gv                  " indent left
 vnoremap > >gv                  " indent right
 
-"" Use urlview to choose and open a url:
-:noremap <leader>u :w<Home>silent <End> !urlview<CR>
-
-
 
 """" Miscellaneous shortcuts
 cnoreabbrev W! w!
