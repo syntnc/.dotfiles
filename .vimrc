@@ -7,10 +7,12 @@ set fileencodings=utf-8
 set bomb
 set binary
 set ttyfast
+set ffs=unix,dos,mac            " set file encoding priority order
 
 set tabstop=4
 set softtabstop=4
 set expandtab
+set smarttab
 
 set autoindent                  " file-specific indenting on newline
 set backspace=indent,eol,start
@@ -31,6 +33,10 @@ set splitbelow                  " open new split pane to the bottom
 set splitright                  " open new split pane to the right
 
 set hidden                      " enable hidden buffers
+set lazyredraw                  " disable redraw while executing macros for better performance
+
+set nrformats-=octal            " disable octal +/- due to conflict with leading zeros
+set nrformats+=hex,alpha        " enable +/- for hex and alphabets
 
 "" Include plugins for vim-plug
 if filereadable(expand("~/.vim/vimplugins"))
@@ -90,17 +96,21 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-"""" Search settings
+"""" Search
 set incsearch                   " search incrementally as characters are entered
 set hlsearch                    " highlight matches
 set ignorecase                  " use case-insensitive search
 set smartcase                   " use case-insensitive search except when using capital letters
+set infercase                   " use case inference for smarter autocompletion
 set path+=**                    " recursive file searching from current directory
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+"" Center line on search item occurence
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+"" Search current selection in visual mode
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 """" Session management
 let g:session_directory = "~/.vim/session"
@@ -113,18 +123,21 @@ let g:session_command_aliases = 1
 "" Map leader to ,
 let mapleader=','
 
-nnoremap <leader>jk :nohlsearch<CR>
-nnoremap <space> za
-
-"" Introduce copy line
-map Y y$
-
-"" Beginning/End of line using B and E
-" nnoremap B ^
-" nnoremap E $
+nnoremap <leader>jk :nohlsearch<CR>         " turn off highlights after search
+map Y y$                                    " introduce copy line
 
 ""Press jk to quit Input Mode
 inoremap jk <esc>
+
+"" Code folding
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+"" Character navigation
+map - ^
+map = $
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
@@ -153,12 +166,26 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 "" Tabs
-nnoremap <Tab> gt               " use :tabn to go to the next tab
-nnoremap <S-Tab> gT             " use :tabp to go to the previous tab
-nnoremap <silent> <S-t> :tabnew<CR>
-
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>to :tabonly<cr>
+nnoremap <leader>tc :tabclose<cr>
+nnoremap <leader>tj :tabnext
+nnoremap <leader>tk :tabprevious
 noremap <Leader><Left>  :tabmove -1<CR>     " shift tab to the left
 noremap <Leader><Right> :tabmove +1<CR>     " shift tab to the right
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+
+"" Error window navigation
+map <C-n> :cnext<CR>
+map <C-p> :cprevious<CR>
+nnoremap <leader>x :cclose<CR>
 
 
 "" Buffer navigation
@@ -168,12 +195,15 @@ noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 noremap <leader>c :bd<CR>       " close buffer
 
+
 "" Indent and move code blocks
 vnoremap < <gv                  " indent left
 vnoremap > >gv                  " indent right
 
 "" Use urlview to choose and open a url:
 :noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
+
 
 """" Miscellaneous shortcuts
 cnoreabbrev W! w!
@@ -186,6 +216,8 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+
 
 """" Auto-commands
 
@@ -233,6 +265,32 @@ let g:auto_save_in_insert_mode = 0
 autocmd FileType tex let g:auto_save=1
 autocmd FileType tex let g:auto_save_silent=1
 
+
+" go
+" vim-go
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+let g:go_addtags_transform = "snakecase"
+
+augroup vimrc-go
+  autocmd!
+  autocmd Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+  autocmd Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+  autocmd Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+  autocmd FileType go nmap <F10> :GoTest -short<cr>
+  autocmd FileType go nmap <F11> :GoCoverageToggle -short<cr>
+  autocmd FileType go nmap <F12> <Plug>(go-def)
+augroup end
 
 " python
 " vim-python
@@ -304,6 +362,7 @@ else
   let g:airline_symbols.linenr = ''
 endif
 let g:airline_theme = 'solarized'
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -383,7 +442,8 @@ let g:ale_fix_on_save = 1
 nmap <Leader>ad :ALEGoToDefinition<CR>
 nmap <Leader>ah :ALEHover<CR>
 nmap <Leader>ar :ALEFindReferences<CR>
-
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 
 
 "" Ultisnips
