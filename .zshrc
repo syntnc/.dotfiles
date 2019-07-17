@@ -157,3 +157,5 @@ export PATH="/home/illuminatus/anaconda3/bin:$PATH"
 # Fix for docker plugin not loading
 fpath+=($ZSH/plugins/docker)
 autoload -U compinit && compinit
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
