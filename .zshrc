@@ -12,6 +12,7 @@ export TERM="xterm-256color"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
+[ -f ~/.powerlevelrc ] && source ~/.powerlevelrc
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -110,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $HOME/.bash_aliases
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # autoload -U promptinit; promptinit
 # prompt spaceship
@@ -138,17 +139,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 #     hg
 #     cmd_exec_time
 #   )
-
-# Powerlevel9k theme settings
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv anaconda dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(aws status ip ssh)
-POWERLEVEL9K_TIME_FORMAT='%D{%H:%M %p}'
-POWERLEVEL9k_TIME_12HR=true
-POWERLEVEL9K_ANACONDA_BACKGROUND="green"
 
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
 
