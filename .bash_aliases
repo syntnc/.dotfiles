@@ -11,7 +11,7 @@ alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
 alias cfv="$GUI_EDITOR ~/.vimrc"
 alias cfx="$GUI_EDITOR ~/.Xresources"
 alias cfz="$GUI_EDITOR ~/.zshrc"
-alias cfvp="$GUI_EDITOR ~/.vim/pack/install.sh"
+alias cfvp="$GUI_EDITOR ~/.vim/vimplugins"
 
 alias vcfa="$EDITOR ~/.bash_aliases"
 alias vcfb="$EDITOR ~/.bashrc"
@@ -23,7 +23,7 @@ alias vcfri="$EDITOR ~/.config/ranger/rifle.conf"
 alias vcfv="$EDITOR ~/.vimrc"
 alias vcfx="$EDITOR ~/.Xresources"
 alias vcfz="$EDITOR ~/.zshrc"
-alias vcfvp="$EDITOR ~/.vim/pack/install.sh"
+alias vcfvp="$EDITOR ~/.vim/vimplugins"
 
 alias ga="cd ~/Audiobooks"
 alias gb="cd ~/Ebooks"
@@ -61,5 +61,4 @@ alias yt='f() { cp $1 ~/TV }; f'
 alias attach='tmux attach-session -t'
 alias cozy='flatpak run com.github.geigi.cozy'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias vimpack='bash ~/.vim/pack/install.sh'
 alias vims='f() { vim -S ~/.vim/session/$1.vim }; f'
