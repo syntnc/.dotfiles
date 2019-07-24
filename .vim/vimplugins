@@ -36,6 +36,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-markdown'
 Plug 'ap/vim-css-color'
 Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'hashivim/vim-terraform'
 
 " Generated
 Plug 'vim-scripts/CSApprox'

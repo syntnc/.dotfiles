@@ -1,16 +1,91 @@
-"languageserver": {
-        "golang": {
-                "command": "gopls",
-                "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-                "filetypes": ["go"]
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "go",
+        "typescript",
+        "json",
+        "jsonc",
+        "terraform"
+    ],
+    "coc.preferences.formatOnType": true,
+    "codeLens.enable": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": true,
+    "git.addGlameToVirtualText": true,
+    "languageserver": {
+        "bash": {
+            "args": [
+                "start"
+            ],
+            "command": "bash-language-server",
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
         },
-
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "cuda",
+                "objc",
+                "objcpp"
+            ],
+            "initializationOptions": {
+                "cacheDirectory": "/tmp/ccls"
+            },
+            "rootPatterns": [
+                "compile_commands.json",
+                ".ccls",
+                ".root",
+                ".git/"
+            ]
+        },
+        "dockerfile": {
+            "args": [
+                "--stdio"
+            ],
+            "command": "docker-langserver",
+            "filetypes": [
+                "dockerfile"
+            ]
+        },
+        "golang": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ]
+        },
         "intelephense": {
-                "command": "intelephense",
-                "args": ["--stdio"],
-                "filetypes": ["php"],
-                "initializationOptions": {
-                        "storagePath": "/tmp/intelephense"
-                }
+            "args": [
+                "--stdio"
+            ],
+            "command": "intelephense",
+            "filetypes": [
+                "php"
+            ],
+            "initializationOptions": {
+                "storagePath": "/tmp/intelephense"
+            }
         }
+    },
+    "prettier.printWidth": 160,
+    "prettier.singleQuote": true,
+    "signature.target": "echo",
+    "snippets.extends": {
+        "javascriptreact": [
+            "javascript"
+        ],
+        "typescript": [
+            "javascript"
+        ]
+    }
 }

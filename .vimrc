@@ -324,6 +324,11 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['latex', 'python']
 let python_highlight_all = 1
 
+
+" terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
 """" Plugin specific configs
 
 "" Vim Airline
