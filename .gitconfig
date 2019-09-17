@@ -3,5 +3,8 @@
 	name = Sayantan Chatterjee
 	email = thisissayantan.mail@gmail.com
 
+[credential "https://github.com"]
+    username = coderIlluminatus
+
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig

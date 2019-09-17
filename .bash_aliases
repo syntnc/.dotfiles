@@ -8,10 +8,11 @@ alias cfis="$GUI_EDITOR ~/.i3status.conf"
 alias cfp="$GUI_EDITOR ~/.profile"
 alias cfr="$GUI_EDITOR ~/.config/ranger/rc.conf"
 alias cfri="$GUI_EDITOR ~/.config/ranger/rifle.conf"
+alias cfssh="$GUI_EDITOR ~/.ssh/config"
 alias cfv="$GUI_EDITOR ~/.vimrc"
+alias cfvp="$GUI_EDITOR ~/.vim/vimplugins"
 alias cfx="$GUI_EDITOR ~/.Xresources"
 alias cfz="$GUI_EDITOR ~/.zshrc"
-alias cfvp="$GUI_EDITOR ~/.vim/vimplugins"
 
 alias vcfa="$EDITOR ~/.bash_aliases"
 alias vcfb="$EDITOR ~/.bashrc"
@@ -20,10 +21,11 @@ alias vcfis="$EDITOR ~/.i3status.conf"
 alias vcfp="$EDITOR ~/.profile"
 alias vcfr="$EDITOR ~/.config/ranger/rc.conf"
 alias vcfri="$EDITOR ~/.config/ranger/rifle.conf"
+alias vcfssh="$EDITOR ~/.ssh/config"
 alias vcfv="$EDITOR ~/.vimrc"
+alias vcfvp="$EDITOR ~/.vim/vimplugins"
 alias vcfx="$EDITOR ~/.Xresources"
 alias vcfz="$EDITOR ~/.zshrc"
-alias vcfvp="$EDITOR ~/.vim/vimplugins"
 
 alias ga="cd ~/Audiobooks"
 alias gb="cd ~/Ebooks"
@@ -57,6 +59,9 @@ alias yme='f() { cp $1 ~/Movies/English }; f'
 alias ymh='f() { cp $1 ~/Movies/Hindi }; f'
 alias ymi='f() { cp $1 ~/Movies/International }; f'
 alias yt='f() { cp $1 ~/TV }; f'
+
+alias w='f() { cd ~/work/$1 }; f'
+alias wcl='f() { git clone git@github.com:$(git config --get credential.https://github.com.username)/$1.git ~/work/$1 }; f'
 
 alias attach='tmux attach-session -t'
 alias cozy='flatpak run com.github.geigi.cozy'
