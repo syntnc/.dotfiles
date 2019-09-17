@@ -7,11 +7,15 @@ export EDITOR=vim
 export GUI_EDITOR=code
 export VISUAL=vim
 export TERM="xterm-256color"
+export DEFAULT_USER="illuminatus"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Add powerlevel10k theme
+# git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+ZSH_THEME="powerlevel10k/powerlevel10k"
 [ -f ~/.powerlevelrc ] && source ~/.powerlevelrc
 
 # Set list of themes to load
@@ -73,10 +77,15 @@ ENABLE_CORRECTION="true"
 # Add autosuggestions
 # git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+# Add fzf docker support
+# git clone https://github.com/pierpo/fzf-docker.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-docker
+
 plugins=(
   git
   docker
   docker-compose
+  fzf-docker
+  vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -143,6 +152,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 export PATH="/home/illuminatus/anaconda3/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_COMPLETION_TRIGGER=','
 
 # Fix for docker plugin not loading
 fpath+=($ZSH/plugins/docker)
