@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Sayantan C.
+	email = syntnc@proton.me
+
+[credential "https://github.com"]
+    username = syntnc
+
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
