@@ -1,0 +1,39 @@
+alias ls="eza --icons"
+alias ll="eza -l --icons --git"
+alias lla="eza -l --icons --all"
+
+alias cfg="$EDITOR $XDG_CONFIG_HOME/git/config"
+alias cft="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias cfv="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
+alias cfz="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc"
+alias cfza="$EDITOR $XDG_CONFIG_HOME/zsh/.zsh_aliases"
+alias cfze="$EDITOR $HOME/.zshenv"
+
+# Basic utilities
+mkdir_and_cd ()
+{
+    mkdir -p $1 && cd $1
+}
+alias mkcd=mkdir_and_cd
+alias ssh='TERM="xterm-256color" ssh'
+
+alias vim="nvim"
+alias n="nvim"
+
+# # set aliases for each nvim distribution found in the config dir
+if type nvim &> /dev/null; then
+    for variant in "$XDG_CONFIG_HOME/nvim-"*/; do
+        if [[ -d $variant ]]; then
+            alias $(basename $variant)="NVIM_APPNAME=$(basename $variant) nvim"
+        fi
+    done
+fi
+
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
