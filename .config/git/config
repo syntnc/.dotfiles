@@ -7,17 +7,59 @@
     username = syntnc
 
 [core]
+    editor = nvim
     pager = delta
+
+[branch]
+    sort = -committerdate
 
 [interactive]
     diffFilter = delta --color-only
 
 [delta]
-    navigate = true
     dark = true
+    navigate = true
+    line-numbers = true
+    syntax-theme = base16
 
 [merge]
-    conflictStyle = zdiffs
+    conflictStyle = zdiff3
+
+[rerere]
+    enabled = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[columnn]
+    ui = auto
+
+[alias]
+    co = checkout
+    cob = checkout -b
+    st = status -sb
+    br = branch -vv
+    ci = commit
+    last = log -1 HEAD --stat
+    unstage = reset HEAD --
+    amend = commit --amend --fixup
+    fixup = commit --fixup
+    undo = reset --soft HEAD~1
+    lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit
+    pushf = push --force-with-lease
+    publish = !git push -u origin $(git branch --show-current)
+    push-empty = !git commit --allow-empty -m "Empty commit" && git push
 
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
+
+; [credential]
+; 	helper = store
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[http]
+	lowSpeedLimit = 1000
+	lowSpeedTime = 60
+	postBuffer = 524288000
