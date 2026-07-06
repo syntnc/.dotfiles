@@ -1,6 +1,7 @@
 alias ls="eza --icons"
-alias ll="eza -l --icons --git"
-alias lla="eza -l --icons --all"
+alias la="ls -la"
+alias ll="eza -lah --icons --git"
+alias lla="eza -lah --icons --all"
 
 alias cfg="$EDITOR $XDG_CONFIG_HOME/git/config"
 alias cft="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
@@ -8,6 +9,9 @@ alias cfv="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
 alias cfz="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc"
 alias cfza="$EDITOR $XDG_CONFIG_HOME/zsh/.zsh_aliases"
 alias cfze="$EDITOR $HOME/.zshenv"
+
+alias gitlogger="git log --branches --remotes --tags --graph --oneline --decorate"
+alias fzf-edit="fzf --preview 'bat --style=numbers --color=always {}' | xargs -n 1 nvim"
 
 # Basic utilities
 mkdir_and_cd ()

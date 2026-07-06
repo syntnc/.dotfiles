@@ -74,14 +74,16 @@ zinit light-mode for \
 # -----------------------------------------------------------------------------
 # Add in zsh plugins
 # -----------------------------------------------------------------------------
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
+# load order matters:
+#   - fzf-tab before widget-wrapping plugins (autosuggestions, syntax highlights)
+#   - zsh-history-substring-search after widget plugins
+#   - fast-syntax-highlighting in the end
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-history-substring-search
-zinit light softmoth/zsh-vim-mode
-zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-autosuggestions
+zinit light softmoth/zsh-vim-mode
+zinit light zsh-users/zsh-history-substring-search
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # -----------------------------------------------------------------------------
 # Add in snippets
