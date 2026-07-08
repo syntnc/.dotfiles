@@ -111,7 +111,7 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*:paths' accept-exact '*(N)'
 zstyle ':completion::complete:*' use-cache on
 
-zstyle ':fzf-tab:complete:cd:*' fzf-preview "eza -1 --color=always --icons $realpath"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --icons $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # -----------------------------------------------------------------------------
@@ -147,6 +147,5 @@ bindkey -M viins '^[0B' history-substring-search-down
 # -----------------------------------------------------------------------------
 eval "$(fzf --zsh)"
 eval "$(direnv hook zsh)"
-eval "$(pyenv init - zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

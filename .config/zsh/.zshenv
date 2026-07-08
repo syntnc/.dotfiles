@@ -25,7 +25,10 @@ export PATH=$CARGO_HOME/bin:$PATH
 
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 
-export PYENV_ROOT=$XDG_DATA_HOME/pyenv
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+
+export PI_NODE_VERSION=v22.3.1-linux-x64
+export PI_NODE=$XDG_DATA_HOME/pi-node/$PI_NODE_VERSION
+export PATH=$PI_NODE/bin:$PATH
 
 export PATH=$XDG_DATA_HOME/.local/bin:$PATH
