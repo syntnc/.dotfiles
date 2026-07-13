@@ -143,6 +143,18 @@ bindkey -M viins '^[[B' history-substring-search-down
 bindkey -M viins '^[0B' history-substring-search-down
 
 # -----------------------------------------------------------------------------
+# ZLE (zsh line editor)
+# -----------------------------------------------------------------------------
+
+# Stop search on navigation keys
+bindkey -M isearch '^[[A' history-substring-search-up
+bindkey -M isearch '^[[B' history-substring-search-down
+bindkey -M isearch '^[[C' forward-char
+bindkey -M isearch '^[[D' backward-char
+
+bindkey ' ' magic-space
+
+# -----------------------------------------------------------------------------
 # Shell integrations
 # -----------------------------------------------------------------------------
 eval "$(fzf --zsh)"

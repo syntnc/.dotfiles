@@ -31,6 +31,11 @@ esac
 
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 
+export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
-export PATH=$XDG_DATA_HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$XDG_DATA_HOME/bob/nvim-bin:$PATH
