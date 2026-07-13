@@ -23,12 +23,14 @@ export PATH=$GOPATH/bin:$PATH
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export PATH=$CARGO_HOME/bin:$PATH
 
+export PNPM_HOME=$XDG_DATA_HOME/pnpm
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
-
-export PI_NODE_VERSION=v22.3.1-linux-x64
-export PI_NODE=$XDG_DATA_HOME/pi-node/$PI_NODE_VERSION
-export PATH=$PI_NODE/bin:$PATH
 
 export PATH=$XDG_DATA_HOME/.local/bin:$PATH
