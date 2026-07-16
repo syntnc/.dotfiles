@@ -19,6 +19,20 @@ setopt hist_save_no_dups
 setopt inc_append_history
 setopt sharehistory
 
+# Not in .zshenv: can be clobbered by /etc/zshrc
+export HISTFILE=$XDG_STATE_HOME/zsh/history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+# Reinstate session dir (hardcoded by Apple Terminal)
+if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ -n "$TERM_SESSION_ID" ]]; then
+        export SHELL_SESSION_DIR=$XDG_STATE_HOME/zsh/sessions
+        export SHELL_SESSION_FILE="$SHELL_SESSION_DIR/$TERM_SESSION_ID.session"
+        [[ -d "$SHELL_SESSION_DIR" ]] || mkdir -m 700 -p "$SHELL_SESSION_DIR"
+    fi
+fi
+
 # -----------------------------------------------------------------------------
 # Set up fpath for manually generated completions
 # -----------------------------------------------------------------------------
@@ -157,7 +171,25 @@ bindkey ' ' magic-space
 # -----------------------------------------------------------------------------
 # Shell integrations
 # -----------------------------------------------------------------------------
+if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then # Apple Silicon
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -f "/usr/local/bin/brew" ]]; then # Intel (legacy)
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+fi
+
+# Must be after Homebrew shell integration to ensure bob nvim wins
+case ":$PATH:" in
+  *":$BOB_HOME/nvim-bin:"*) ;;
+  *) export PATH="$BOB_HOME/nvim-bin:$PATH" ;;
+esac
+
 eval "$(fzf --zsh)"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+if command -v wt >/dev/null 2>&1; then
+    eval "$(command wt config shell init zsh)"
+fi

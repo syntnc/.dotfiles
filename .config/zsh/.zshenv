@@ -7,11 +7,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 [ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
-
-export HISTSIZE=1000000
-export SAVEHIST=1000000
 
 export EDITOR=nvim
 export VISUAL=nvim
