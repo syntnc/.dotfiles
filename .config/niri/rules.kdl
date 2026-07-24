@@ -1,7 +1,12 @@
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// Keep Ghostty's background-opacity visible by
+// drawing the focus ring around the window
+// instead of as a solid rectangle behind it.
 window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
     draw-border-with-background false
 }
 
